@@ -1,5 +1,5 @@
 import React from 'react';
-import Statistics from 'components/statistics/statistics';
+import Statistics from 'components/statistics';
 
 class FeedbackOptions extends React.Component {
     static defaultProps = {

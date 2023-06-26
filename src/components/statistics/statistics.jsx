@@ -1,5 +1,5 @@
 import React from 'react';
-import TotalStatistics from './totalStatistic/TotalStatistics';
+import TotalStatistics from './totalStatistic';
 
 
  const countTotalFeedback = (good, neutral, bad) => {

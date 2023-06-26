@@ -1,4 +1,4 @@
-import FeedbackOptions from "components/FeedbackOptions/FeedbackOptions";
+import FeedbackOptions from "components/FeedbackOptions/";
 
 function Title() {
     return (
