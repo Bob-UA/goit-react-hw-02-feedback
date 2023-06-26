@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TotalStatistics from './totalStatistic';
 
 
@@ -28,5 +29,11 @@ function Statistics({ good, neutral, bad, }) {
     const notifycation = (<p>"There is no feedback"</p>)
     return total ? ifTotal : notifycation;
 }
+
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+};
 
 export default Statistics;
