@@ -1,78 +1,40 @@
 import React from 'react';
-import Statistics from 'components/statistics';
+import PropTypes from 'prop-types';
 import css from './FeedbackOptions.module.css';
 
+
+
 class FeedbackOptions extends React.Component {
-    static defaultProps = {
-        initialGoodValue: 0,
-        initialNeutralValue: 0,
-        initialBadValue: 0,
-    }
-    static propTypes = {
-
-    }
-
-  state = {
-    goodValue: this.props.initialGoodValue,
-    neutralValue: this.props.initialNeutralValue,
-    badValue: this.props.initialBadValue,
-  };
-
-  onLeaveGoodFeedback = () => {
-    this.setState(prevState => {
-      return {
-        goodValue: prevState.goodValue + 1,
-      };
-    });
-  };
-
-  onLeaveNeuturalFeedback = () => {
-    this.setState(prevState => {
-      return {
-        neutralValue: prevState.neutralValue + 1,
-      };
-    });
-  };
-
-  onLeaveBadFeedback = () => {
-    this.setState(prevState => {
-      return {
-        badValue: prevState.badValue + 1,
-      };
-    });
-  };
-
 
   render() {
+     const ar = Object.keys(this.props.valuesArray);
     return (
-      <div>
-        <ul className={css.listBtn}>
-          <li className={css.itemBtn}>
-            <button type="button" className={css.btn} onClick={this.onLeaveGoodFeedback}>
-              Good
-            </button>
-          </li>
-          <li className={css.itemBtn}>
-            <button type="button" className={css.btn} onClick={this.onLeaveNeuturalFeedback}>
-              Neutural
-            </button>
-          </li>
-          <li className={css.itemBtn}>
-            <button type="button" className={css.btn} onClick={this.onLeaveBadFeedback}>
-              Bad
-            </button>
-          </li>
-            </ul>
-            <h2 className={css.title}>Statistics:</h2>
-        <Statistics
-          good={this.state.goodValue}
-          neutral={this.state.neutralValue}
-          bad={this.state.badValue}
-        />
-      </div>
-    );
-  }
-}
+    <div>
+      <ul className={css.listBtn}>
+        {ar.map(name => {
+          return (
+            <li className={css.itemBtn} key={name}>
+              <button
+                type="button"
+                className={css.btn}
+                onClick={() => this.props.onLeaveFeedback(name)}
+                name={name}
+              >
+                {name}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      <h2 className={css.title}>Statistics:</h2>
+    </div>
+  )};
+};
 
 
 export default FeedbackOptions;
+
+FeedbackOptions.propTypes = {
+  valuesArray: PropTypes.object.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};

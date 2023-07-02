@@ -13,21 +13,20 @@ import TotalStatistics from './totalStatistic';
  
 function Statistics({ good, neutral, bad, }) {
     const total = countTotalFeedback(good, neutral, bad);
-    const positiveFeedback = countPositiveFeedbackPercentage(good, total);
-    const ifTotal = (
+  const positiveFeedback = countPositiveFeedbackPercentage(good, total);
+  return total ? (
     <div>
       <ul>
         <li>Good: {good}</li>
         <li>Neutral: {neutral}</li>
         <li>Bad: {bad}</li>
       </ul>
-          <TotalStatistics
-              total={total}
-              positiveFeedback={positiveFeedback} />
+      <TotalStatistics total={total} positiveFeedback={positiveFeedback} />
     </div>
-    );
-    const notifycation = (<p>"There is no feedback"</p>)
-    return total ? ifTotal : notifycation;
+  ) : (
+    <p>"There is no feedback"</p>
+  );
+
 }
 
 Statistics.propTypes = {
